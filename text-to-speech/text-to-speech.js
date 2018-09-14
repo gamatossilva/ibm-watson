@@ -16,8 +16,9 @@ const rl = readline.createInterface({
 rl.question('Digite o texto ', (value) => {
     var params = {
         text: value,
-        voice: 'pt-BR_IsabelaVoice',
+        //voice: 'pt-BR_IsabelaVoice',
         //voice: "en-US_AllisonVoice",
+        voice: 'es-ES_LauraVoice',
         accept: 'audio/wav'
     }
 
