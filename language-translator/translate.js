@@ -30,7 +30,7 @@ rl.question('Digite o texto ', (value) => {
                 languageIdetified = response.languages[0].language
                 var translate = {
                     text: value,
-                    model_id: `${languageIdetified}-pt`
+                    model_id: `${languageIdetified}-en`
                 }
                 
                 languageTranslator.translate(
