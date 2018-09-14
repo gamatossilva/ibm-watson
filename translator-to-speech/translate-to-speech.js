@@ -51,13 +51,24 @@ rl.question('Digite o texto ', (value) => {
                         } else {
                             //console.log(JSON.stringify(response, null, 2))
                             console.log(response.translations[0].translation)
-                            textToSpeech.synthesize({
+                            var speech = {
                                 text: response.translations[0].translation,
-                                //voice: 'pt-BR_IsabelaVoice',
-                                voice: "en-US_AllisonVoice",
-                                //voice: 'en-US_WatsonVoice',
+                                voice: 'pt-BR_IsabelaVoice',
                                 accept: 'audio/wav'
-                            }).pipe(fs.createWriteStream('meuaudio.wav'))
+                            }
+
+                            textToSpeech.synthesize(
+                                speech,
+                                function(error, audio){
+                                    if(error){
+                                        console.log(error)
+                                        return
+                                    }
+                                    textToSpeech.repairWavHeader(audio)
+                                    fs.writeFileSync('audio.wav', audio)
+                                    console.log('audio.wav written with a corrected wav header')
+                                }
+                            )
                         }
                     }
                 )
