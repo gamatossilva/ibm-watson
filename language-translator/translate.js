@@ -30,6 +30,8 @@ rl.question('Digite o texto ', (value) => {
                 languageIdetified = response.languages[0].language
                 var translate = {
                     text: value,
+                    //source: `${languageIdetified}`,
+                    //target: 'en'
                     model_id: `${languageIdetified}-en`
                 }
                 
@@ -40,7 +42,8 @@ rl.question('Digite o texto ', (value) => {
                             console.log(error)
                         } else {
                             //console.log(JSON.stringify(response, null, 2))
-                            console.log(response.translations[0].translation)
+                            //console.log(response.translations[0].translation)
+                            console.log(response.translations)
                         }
                     }
                 )

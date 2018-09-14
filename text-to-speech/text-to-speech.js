@@ -13,11 +13,26 @@ const rl = readline.createInterface({
 });
 
 rl.question('Digite o texto ', (value) => {
-    textToSpeech.synthesize({
+    var params = {
         text: value,
-        voice: 'pt-BR_IsabelaVoice',
+        //voice: 'pt-BR_IsabelaVoice',
         //voice: "en-US_AllisonVoice",
         accept: 'audio/wav'
-    }).pipe(fs.createWriteStream('meuaudio.wav'))
+    }
+
+    textToSpeech.synthesize(
+        params,
+        function(error, response){
+            if(error){
+                console.log(error)
+            }
+        }
+    ).pipe(fs.createWriteStream('meuaudio2.wav'))
+    /*textToSpeech.synthesize({
+        text: [value, "I'm going to the supermarket"],
+        //voice: 'pt-BR_IsabelaVoice',
+        //voice: "en-US_AllisonVoice",
+        accept: 'audio/wav'
+    }).pipe(fs.createWriteStream('meuaudio.wav'))*/
     rl.close()
 })
